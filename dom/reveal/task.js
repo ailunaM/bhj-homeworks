@@ -1,5 +1,5 @@
-function isVisible(element) {
-  const { top, bottom } = element.getBoundingClientRect();
+function isVisible(el) {
+  const { top, bottom } = el.getBoundingClientRect();
   if (bottom < 0) {
     return false;
   }
