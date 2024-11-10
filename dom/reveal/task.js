@@ -9,7 +9,7 @@ function isVisible(element) {
   return true;
 }
 
-window.addEventListener('scroll', () => {
+document.addEventListener('scroll', () => {
   const revel = document.querySelectorAll('.reveal');
   revel.forEach((element) => {
     if(isVisible(element)){
