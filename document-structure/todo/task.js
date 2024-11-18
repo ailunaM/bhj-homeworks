@@ -5,16 +5,11 @@ taskForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const tasksList = document.getElementById('tasks__list');
   const taskText = taskInput.value;
-  //   let div = document.createElement('div');
-  //   div.textContent = taskText;
-  //   tasksList.appendChild(div);
 
   const taskHtml = `
 <div class="task">
-                      <div class="task__title">
-                       ${taskText}
-                      </div>
-                      <a href="#" class="task__remove">&times;</a>
+    <div class="task__title">${taskText}</div>
+    <a href="#" class="task__remove">&times;</a>
  </div>
 `;
   tasksList.insertAdjacentHTML('beforeend', taskHtml);
