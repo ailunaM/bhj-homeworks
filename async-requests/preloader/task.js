@@ -5,7 +5,7 @@ request.open('GET', 'https://students.netoservices.ru/nestjs-backend/slow-get-co
 request.addEventListener('readystatechange', function () {
   if (this.readyState == request.DONE && this.status == 200) {
     let data = JSON.parse(this.responseText);
-    var output = ``;
+    let output = ``;
     let valuta = data.response.Valute;
 
     for (let key in valuta) {
