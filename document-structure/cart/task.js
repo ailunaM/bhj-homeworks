@@ -2,7 +2,6 @@ const products = Array.from(document.getElementsByClassName('product'));
 const cartProducts = document.querySelector('.cart__products');
 
 products.forEach((product) => {
-  console.log(product);
   let currentQuantityValue = 1;
   const productQuantityValue = product.querySelector('.product__quantity-value');
   productQuantityValue.textContent = currentQuantityValue;
@@ -12,13 +11,29 @@ products.forEach((product) => {
   const productImage = product.querySelector('.product__image').src;
   const btn = product.querySelector('.product__add');
   btn.addEventListener('click', () => {
-    const productHtml = `
-    <div class="cart__product" data-id="${attribute}">
-                <img class="cart__product-image" src="${productImage}">
-                <div class="cart__product-count">${currentQuantityValue}</div>
-            </div>
-    `;
-    if (currentQuantityValue > 0) cartProducts.insertAdjacentHTML('beforeend', productHtml);
+    const cards = Array.from(document.getElementsByClassName('cart__product')); // []
+
+    const productInCard = cards.find((card) => {
+      if (card.getAttribute('data-id') === attribute) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    console.log(productInCard);
+
+    if (productInCard) {
+      let cardCount = productInCard.querySelector('.cart__product-count');
+      cardCount.textContent = currentQuantityValue;
+    } else {
+      const productHtml = `
+      <div class="cart__product" data-id="${attribute}">
+                  <img class="cart__product-image" src="${productImage}">
+                  <div class="cart__product-count">${currentQuantityValue}</div>
+              </div>
+      `;
+      if (currentQuantityValue > 0) cartProducts.insertAdjacentHTML('beforeend', productHtml);
+    }
   });
 
   function up() {
@@ -27,7 +42,7 @@ products.forEach((product) => {
   }
 
   function down() {
-    if (currentQuantityValue > 0) {
+    if (currentQuantityValue > 1) {
       currentQuantityValue--;
       productQuantityValue.textContent = currentQuantityValue;
     }
