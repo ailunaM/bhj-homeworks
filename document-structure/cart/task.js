@@ -24,7 +24,7 @@ products.forEach((product) => {
 
     if (productInCard) {
       let cardCount = productInCard.querySelector('.cart__product-count');
-      cardCount.textContent = currentQuantityValue;
+      cardCount.textContent = +cardCount.textContent + currentQuantityValue;
     } else {
       const productHtml = `
       <div class="cart__product" data-id="${attribute}">
@@ -32,7 +32,7 @@ products.forEach((product) => {
                   <div class="cart__product-count">${currentQuantityValue}</div>
               </div>
       `;
-      if (currentQuantityValue > 0) cartProducts.insertAdjacentHTML('beforeend', productHtml);
+      cartProducts.insertAdjacentHTML('beforeend', productHtml);
     }
   });
 
